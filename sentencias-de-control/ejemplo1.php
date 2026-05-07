@@ -2,6 +2,25 @@
 
     $dias = array("lunes", "martes", "miercoles", "jueves", "viernes", "sábado", "domingo");
 
+    $diaNum = (int) ($_POST["dia"] ?? "0");
+    $dia = match($diaNum) {
+        1 => "Lunes", 2 => "Martes", 3 => "Miercoles", 4 => "Jueves", 5 => "Viernes", 6 => "Sábado", 7 => "domingo",
+        default => "sin datos"
+    };
+
+    // SOLUCIÓN DE VICTOR 
+    //
+    // $dia = ucfirst(strtolower(match($diaNum) {
+    //     1 => $dias[($diaNum-1)],
+    //     2 => $dias[($diaNum-1)],
+    //     3 => $dias[($diaNum-1)],
+    //     4 => $dias[($diaNum-1)],
+    //     5 => $dias[($diaNum-1)],
+    //     6 => $dias[($diaNum-1)],
+    //     7 => $dias[($diaNum-1)],
+    //     default => "sin datos"
+    // }));
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +38,12 @@
             <div class="col">
                 <h1>Ejempo 1 - Formulario y Sentencias de Control</h1>
                 <hr />
-                <form action="" method="get">
+                <div class="row">
+                    <div class="col">
+                        <p><b>Día Seleccionado:</b> <?= $dia ?></p>
+                    </div>
+                </div>
+                <form action="" method="post">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -27,6 +51,9 @@
                                 <select class="form-select" name="dia">
                                     <?php 
                                         // Pintar los OPTIONS con value de 1 a 7 y la etiqueta la prmera letra en mayúsculas
+                                        for($i = 0; $i < count($dias); $i++) {
+                                            echo '<option value="' . ($i + 1) . '"' . (($i + 1 == $diaNum) ? ' selected' : '')  . '>' . ucfirst(strtolower($dias[$i])) . '</option>';
+                                        }
                                     ?>
                                     <!-- <option value="1">Lunes</option> -->
                                 </select>
