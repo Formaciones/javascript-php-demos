@@ -1,5 +1,11 @@
 <?php 
 
+    // Si no existe clientes.php -> warning, no falla y continua.
+    //include "clientes2.php";    
+
+    // Si no existe clientes.php -> error, falla y se detiene la página
+    require "clientes.php";
+
     $dias = array("lunes", "martes", "miercoles", "jueves", "viernes", "sábado", "domingo");
 
     $diaNum = (int) ($_POST["dia"] ?? "0");
