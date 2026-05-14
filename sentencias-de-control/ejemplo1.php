@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>Día de la Semana</label>
+                                    <label class="">Día de la Semana</label>
                                     <select class="form-select" name="dia">
                                         <?php 
                                             // Pintar los OPTIONS con value de 1 a 7 y la etiqueta la prmera letra en mayúsculas
