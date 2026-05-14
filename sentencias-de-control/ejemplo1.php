@@ -26,6 +26,9 @@
     //     default => "sin datos"
     // }));
 
+    $provincias = array_unique(array_column($clientes, 'provincia'));
+    sort($provincias);    
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +55,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label class="">Día de la Semana</label>
+                                    <label class="form-label">Día de la Semana</label>
                                     <select class="form-select" name="dia">
                                         <?php 
                                             // Pintar los OPTIONS con value de 1 a 7 y la etiqueta la prmera letra en mayúsculas
@@ -83,6 +86,50 @@
                 <br />
                 <h1>Listado de Clientes</h1>
                 <hr />
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <b style="color:white">Filtro</b>
+                    </div>
+                    <div class="card-body">
+                        <form method="get">
+                            <div class="row">
+                                <div class="col-6"> 
+                                    <div class="form-group">
+                                        <label><b>Provincia</b></label>
+                                        <select name="provincia" class="form-select">
+                                            <option value="-1">Todas las Provincias</option>
+                                            <?php foreach($provincias as $provincia): ?>
+                                                <option>
+                                                    <?= htmlspecialchars($provincia) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>                                        
+                                    </div>  
+                                </div>
+                                <div class="col-6"> 
+                                    <div class="form-group">
+                                        <label><b>Edad:</b></label>
+                                        <select name="edad" class="form-select">
+                                            <option value="-1">Todas las Edades</option>
+                                            <?php for($i=15; $i < 70; $i++): ?>
+                                                <option>
+                                                    <?= htmlspecialchars($i) ?>
+                                                </option>
+                                            <?php endfor; ?>
+                                        </select>                                         
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button type="submit" class="btn btn-success">Filtrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br />
                 <div class="row">
                     <div class="col">
                         <!-- Tabla de Clientes (Columnas): ID, Nombre, Edad, Provincia, Vacia. -->
