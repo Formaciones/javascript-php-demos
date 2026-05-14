@@ -29,6 +29,25 @@
     $provincias = array_unique(array_column($clientes, 'provincia'));
     sort($provincias);    
 
+    $provincia = $_GET["provincia"] ?? "-1";
+    $edad = $_GET["edad"] ?? "-1";
+
+    //$clientes = ($provincia == "-1" ? $clientes : array_filter($clientes, fn($cliente) => $provincia == $cliente["provincia"]));
+    //$clientes = ($edad      == "-1" ? $clientes : array_filter($clientes, fn($cliente) => $edad      == $cliente["edad"]));
+
+    if($provincia != "-1" Or $edad != "-1") {
+        $clientes = array_filter($clientes, function($cliente) {
+            $provincia = $_GET["provincia"] ?? "-1";
+            $edad = $_GET["edad"] ?? "-1";
+
+            if ($provincia != "-1" And $edad == "-1") 
+                return ($provincia == $cliente["provincia"]);
+            elseif ($provincia == "-1" And $edad != "-1") 
+                return ($edad == $cliente["edad"]);
+            elseif ($provincia != "-1" And $edad != "-1")
+                return ($provincia == $cliente["provincia"] And $edad == $cliente["edad"]);
+        });
+    }
 ?>
 
 <!DOCTYPE html>
