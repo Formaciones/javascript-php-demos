@@ -1,7 +1,10 @@
 <?php 
     require "clientes.php";
 
+    $id = ; // Leido de parámetro id de la URL
+    $cliente = $clientes[$id];
 
+    $demo = "Demostración";
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@
                             <label><b>Identificador</b></label>
                         </div>                        
                         <div class="col-9">
-                            <input type="text" class="form-control" value="" placeholder="" />
+                            <input type="text" nam="nombre" class="form-control" value="<?= htmlspecialchars($demo ?? '') ?>" placeholder="" />
                         </div>
                     </div>
                     <div class="row mb-3">
