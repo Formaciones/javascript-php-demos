@@ -7,6 +7,43 @@
         ------------------------------------------------------------
     */
 
+    function generarResumenPedidos() {
+        global $pedidos;
+
+        $resumen = [];
+
+        foreach ($pedidos as $pedido) {
+            $resumen[] = [
+                "numeroPedido" => $pedido["numeroPedido"],
+                "cliente" => $pedido["cliente"],
+                "numItems" => numLineas($pedido["productos"]),
+                "importeTotal" => totalPedido($pedido["productos"])
+            ];
+        }
+
+        return $resumen;
+    }
+
+    function generarResumenPedidos2() {
+        global $pedidos;
+
+        return array_map(function($pedido) {
+            $numItems = count($pedido['productos']);
+            $importeTotal = array_reduce($pedido['productos'], function($carry, $producto) {
+                return $carry + ($producto['cantidad'] * $producto['precioUnidad']);
+            }, 0);
+
+            return [
+                'numeroPedido' => $pedido['numeroPedido'],
+                'cliente' => $pedido['cliente'],
+                'numItems' => $numItems,
+                'importeTotal' => $importeTotal
+            ];
+        }, $pedidos);
+    }        
+
+    ///////////////////////////////////////////////////////////////////////////
+
     function formatearPrecio($precio) {
         return number_format($precio, 2, ',', '.') . ' €';
     }        
@@ -39,11 +76,27 @@
 
     function buscarPedidoPorId($numeroPedidoBuscar)
     {
+        global $pedidos;
+        
         $numerosPedido = array_column($pedidos, "numeroPedido");
         $index = array_search($numeroPedidoBuscar, $numerosPedido);
 
         return $pedidos[$index];
     }
+
+    function buscarPedidoPorId2( $numeroPedidoBuscar)
+    {
+        global $pedidos;
+
+        $resultado = array_filter(
+            $pedidos,
+            function($pedido) use ($numeroPedidoBuscar) {
+                return $pedido["numeroPedido"] == $numeroPedidoBuscar;
+            }
+        );
+
+        return array_values($resultado)[0] ?? null;
+    }    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +136,49 @@
                 <br />
                 <hr />
                 <br />
-
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Núm. Pedido</th>
+                            <th>Cliente</th>
+                            <th>Núm. Líneas</th>
+                            <th>Importe Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($pedidos as $pedido): ?>                                                      
+                        <tr>
+                            <td><?= $pedido['numeroPedido'] ?></td>
+                            <td><?= $pedido['cliente'] ?></td>
+                            <td class="text-center"><?= numLineasPorId($pedido['numeroPedido']) ?></td>
+                            <td class="text-end"><?= formatearPrecio(totalPedidoPorId($pedido['numeroPedido'])) ?></td>
+                        </tr>
+                        <?php endforeach; ?>  
+                    </tbody>
+                </table>
+                <br />
+                <hr />
+                <br />
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Núm. Pedido</th>
+                            <th>Cliente</th>
+                            <th>Núm. Líneas</th>
+                            <th>Importe Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach(generarResumenPedidos() as $pedido): ?>                                                      
+                        <tr>
+                            <td><?= $pedido['numeroPedido'] ?></td>
+                            <td><?= $pedido['cliente'] ?></td>
+                            <td class="text-center"><?= $pedido['numItems'] ?></td>
+                            <td class="text-end"><?= formatearPrecio($pedido['importeTotal']) ?></td>
+                        </tr>
+                        <?php endforeach; ?>  
+                    </tbody>
+                </table>                
             </div>
         </div>
     </div>
