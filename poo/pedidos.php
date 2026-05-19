@@ -7,12 +7,42 @@
         ------------------------------------------------------------
     */
 
-    function numLineas($id) {
+    function formatearPrecio($precio) {
+        return number_format($precio, 2, ',', '.') . ' €';
+    }        
 
+    function numLineas($productos) {
+        return count($productos);
+    }   
+
+    function totalPedido($productos) {
+        $total = 0;
+
+        foreach ($productos as $producto) {
+            $total += $producto["cantidad"] * $producto["precioUnidad"];
+        }
+
+        return $total;
     }
 
-    function totalPedido($id) {
-        
+    ///////////////////////////////////////////////////////////////////////////
+
+    function numLineasPorId($id) {
+        $pedido = buscarPedidoPorId($id);
+        return numLineas($pedido['productos']);
+    }    
+
+    function totalPedidoPorId($id) {
+        $pedido = buscarPedidoPorId($id);
+        return totalPedido($pedido['productos']);        
+    }     
+
+    function buscarPedidoPorId($numeroPedidoBuscar)
+    {
+        $numerosPedido = array_column($pedidos, "numeroPedido");
+        $index = array_search($numeroPedidoBuscar, $numerosPedido);
+
+        return $pedidos[$index];
     }
 ?>
 <!DOCTYPE html>
@@ -40,14 +70,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($pedidos as $pedido): ?>                                                      
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?= $pedido['numeroPedido'] ?></td>
+                            <td><?= $pedido['cliente'] ?></td>
+                            <td class="text-center"><?= numLineas($pedido['productos']) ?></td>
+                            <td class="text-end"><?= formatearPrecio(totalPedido($pedido['productos'])) ?></td>
                         </tr>
+                        <?php endforeach; ?>  
                     </tbody>
                 </table>
+                <br />
+                <hr />
+                <br />
+
             </div>
         </div>
     </div>
