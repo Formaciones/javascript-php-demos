@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Bootstrap 5 - Tema Verde</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        /* Estructura principal */
+        body {
+            background-color: #ffffff;
+            overflow: hidden; /* Evita el scroll general de la pantalla */
+        }
+
+        #wrapper {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Menú Lateral (Sidebar) */
+        #sidebar-wrapper {
+            min-width: 250px;
+            max-width: 250px;
+            background-color: #ffffff;
+            transition: margin 0.25s ease-out;
+        }
+
+        /* Clase para esconder el menú */
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: -250px;
+        }
+
+        /* Contenedor de contenido principal */
+        #page-content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-column: column;
+            overflow: hidden;
+        }
+
+        /* Zona central con scroll independiente */
+        .content-area {
+            flex-grow: 1;
+            overflow-y: auto; /* Permite el scroll de arriba a abajo */
+            background-color: #f8f9fa; /* Fondo gris muy claro para contrastar con las tarjetas blancas */
+        }
+
+        /* Personalización de colores Verdes */
+        .text-custom-green {
+            color: #198754; /* Verde Bootstrap Success */
+        }
+        
+        .btn-custom-green {
+            background-color: #198754;
+            color: white;
+        }
+        .btn-custom-green:hover {
+            background-color: #146c43;
+            color: white;
+        }
+
+        .sidebar-link {
+            color: #333333;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #e8f5e9; /* Fondo verde muy claro */
+            color: #198754; /* Texto verde */
+            font-weight: 500;
+        }
+
+        .card-custom {
+            border-top: 4px solid #198754; /* Línea verde superior en la tarjeta */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+        
+        <!-- MENÚ LATERAL (SIDEBAR) -->
+        <div class="border-end shadow-sm" id="sidebar-wrapper">
+            <div class="sidebar-heading p-3 border-bottom d-flex align-items-center justify-content-between">
+                <span class="fw-bold fs-5 text-custom-green"><i class="bi bi-tree-fill me-2"></i>MiPanel</span>
+            </div>
+            <div class="p-3">
+                <ul class="nav flex-column gap-1">
+                    <li><a href="#" class="sidebar-link active"><i class="bi bi-house-door me-2"></i> Inicio</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="bi bi-person me-2"></i> Perfil</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="bi bi-gear me-2"></i> Configuración</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="bi bi-envelope me-2"></i> Mensajes</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONTENIDO DE LA PÁGINA -->
+        <div id="page-content-wrapper" class="d-flex flex-column">
+            
+            <!-- Barra superior (Navbar básica con el botón de toggle) -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4 py-2">
+                <button class="btn btn-outline-success" id="menu-toggle">
+                    <i class="bi bi-list fs-5"></i>
+                </button>
+                <span class="ms-3 fw-semibold text-secondary">Panel de Control</span>
+            </nav>
+
+            <!-- ZONA CENTRAL (CON SCROLL INDEPENDIENTE) -->
+            <div class="content-area p-4">
+                <div class="container-fluid">
+                    
+                    <!-- Título de la página -->
+                    <h1 class="mb-4 text-custom-green fw-bold">Título de la Sección</h1>
+                    
+                    <!-- Card para el contenido -->
+                    <div class="card shadow-sm card-custom mb-4">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="card-title m-0 text-secondary fw-semibold">Contenido Principal</h5>
+                        </div>
+                        <div class="card-body bg-white">
+                            <p class="card-text">Este es el contenedor tipo card. Puedes agregar aquí cualquier tipo de información, formularios, tablas o gráficos.</p>
+                            
+                            <!-- Bloque de texto largo simulado para probar el scroll -->
+                            <div class="alert alert-success" role="alert">
+                                <i class="bi bi-info-circle-fill me-2"></i> ¡Diseño listo! Si añades más contenido hacia abajo, notarás que solo esta sección se desplaza, manteniendo el pie de página intacto en su sitio.
+                            </div>
+                            
+                            <hr>
+                            
+                            <!-- Contenido de relleno para forzar scroll -->
+                            <h5 class="text-muted mt-4">Simulación de contenido extenso:</h5>
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id magna feugiat, convallis diam ut, elementum mauris. Proin molestie, nunc quis interdum pellentesque, arcu lorem interdum purus, ut pretium diam lorem ac justo. Aliquam nec arcu ac lorem eleifend laoreet ut tempor lorem.</p>
+                            <p class="text-muted">Sed dictum, leo elementum gravida hendrerit, ex mi consectetur magna, non tempor turpis magna non massa. Vivamus sit amet tempus urna, eu rutrum odio. In finibus tellus a congue pretium. Pellentesque sit amet ipsum sed magna dictum varius nec id diam.</p>
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id magna feugiat, convallis diam ut, elementum mauris. Proin molestie, nunc quis interdum pellentesque, arcu lorem interdum purus, ut pretium diam lorem ac justo. Aliquam nec arcu ac lorem eleifend laoreet ut tempor lorem.</p>
+                            <p class="text-muted">Sed dictum, leo elementum gravida hendrerit, ex mi consectetur magna, non tempor turpis magna non massa. Vivamus sit amet tempus urna, eu rutrum odio. In finibus tellus a congue pretium. Pellentesque sit amet ipsum sed magna dictum varius nec id diam.</p>
+                            
+                            <button class="btn btn-custom-green mt-3">Acción Principal</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- PIE DE PÁGINA FIJO -->
+            <footer class="footer bg-white border-top py-3 text-center text-muted shadow-sm">
+                <div class="container-fluid">
+                    <span>© 2026 Tu Empresa - <span class="text-custom-green fw-semibold">Diseño Limpio en Verde</span></span>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 Bundle con Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para activar/esconder el menú lateral -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const wrapper = document.getElementById('wrapper');
+
+        menuToggle.addEventListener('click', event => {
+            event.preventDefault();
+            wrapper.classList.toggle('toggled');
+        });
+    </script>
+</body>
+</html>

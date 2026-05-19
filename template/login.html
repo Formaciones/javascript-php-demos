@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - MiPanel</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa; /* Mismo fondo gris claro que la zona central */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card-login {
+            max-width: 420px;
+            width: 100%;
+            border: none;
+            border-top: 4px solid #198754; /* Línea verde característica */
+            border-radius: 8px;
+        }
+
+        /* Personalización de colores Verdes */
+        .text-custom-green {
+            color: #198754;
+        }
+        
+        .btn-custom-green {
+            background-color: #198754;
+            color: white;
+            transition: all 0.2s;
+        }
+        .btn-custom-green:hover {
+            background-color: #146c43;
+            color: white;
+        }
+
+        /* Estilos de enfoque personalizados en Verde */
+        .form-control:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        .link-green {
+            color: #198754;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .link-green:hover {
+            color: #146c43;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONTENEDOR PRINCIPAL DEL LOGIN -->
+    <div class="login-container">
+        <div class="card card-login shadow-sm">
+            <div class="card-body p-4 p-sm-5">
+                
+                <!-- Logo e Identidad (Mismo icono de la barra lateral) -->
+                <div class="text-center mb-4">
+                    <div class="display-5 text-custom-green mb-2">
+                        <i class="bi bi-tree-fill"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark m-0">Bienvenido a MiPanel</h3>
+                    <p class="text-muted small mt-1">Ingresa tus credenciales para acceder</p>
+                </div>
+
+                <!-- Formulario de Login -->
+                <form action="#" method="POST">
+                    
+                    <!-- Campo Correo Electrónico -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-secondary fw-semibold small">Correo Electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="email" class="form-content form-control border-start-0" id="email" placeholder="nombre@correo.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Campo Contraseña -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label text-secondary fw-semibold small">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted border-end-0">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input type="password" class="form-control border-start-0" id="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <!-- Recordarme y Olvido de contraseña -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 small">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label text-muted" id="rememberMeLabel" for="rememberMe">
+                                Recordarme
+                            </label>
+                        </div>
+                        <a href="#" class="link-green">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <!-- Botón de Acceso -->
+                    <button type="submit" class="btn btn-custom-green w-100 py-2 fw-semibold shadow-sm mb-3">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                    </button>
+
+                </form>
+
+                <!-- Registro o enlaces adicionales -->
+                <div class="text-center mt-4 pt-2 border-top">
+                    <p class="text-muted small m-0">¿No tienes una cuenta? <a href="#" class="link-green">Regístrate aquí</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PIE DE PÁGINA FIJO (Mismo estilo que el panel principal) -->
+    <footer class="bg-white border-top py-3 text-center text-muted shadow-sm mt-auto">
+        <div class="container-fluid">
+            <span>© 2026 Tu Empresa - <span class="text-custom-green fw-semibold">Diseño Limpio en Verde</span></span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 Bundle con Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
