@@ -1,0 +1,143 @@
+/* Estructura principal */
+body {
+    background-color: #ffffff;
+    overflow: hidden; /* Evita el scroll general de la pantalla */
+}
+
+#wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Menú Lateral (Sidebar) */
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #ffffff;
+    transition: margin 0.25s ease-out;
+}
+
+/* Clase para esconder el menú */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+/* Contenedor de contenido principal */
+#page-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-column: column;
+    overflow: hidden;
+}
+
+/* Zona central con scroll independiente */
+.content-area {
+    flex-grow: 1;
+    overflow-y: auto; /* Permite el scroll de arriba a abajo */
+    background-color: #f8f9fa; /* Fondo gris muy claro para contrastar con las tarjetas blancas */
+}
+
+/* Personalización de colores Verdes */
+.text-custom-green {
+    color: #198754; /* Verde Bootstrap Success */
+}
+
+.btn-custom-green {
+    background-color: #198754;
+    color: white;
+}
+.btn-custom-green:hover {
+    background-color: #146c43;
+    color: white;
+}
+
+.sidebar-link {
+    color: #333333;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+    background-color: #e8f5e9; /* Fondo verde muy claro */
+    color: #198754; /* Texto verde */
+    font-weight: 500;
+}
+
+.card-custom {
+    border-top: 4px solid #198754; /* Línea verde superior en la tarjeta */
+}/* Estructura principal */
+body {
+    background-color: #ffffff;
+    overflow: hidden; /* Evita el scroll general de la pantalla */
+}
+
+#wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Menú Lateral (Sidebar) */
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #ffffff;
+    transition: margin 0.25s ease-out;
+}
+
+/* Clase para esconder el menú */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+/* Contenedor de contenido principal */
+#page-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-column: column;
+    overflow: hidden;
+}
+
+/* Zona central con scroll independiente */
+.content-area {
+    flex-grow: 1;
+    overflow-y: auto; /* Permite el scroll de arriba a abajo */
+    background-color: #f8f9fa; /* Fondo gris muy claro para contrastar con las tarjetas blancas */
+}
+
+/* Personalización de colores Verdes */
+.text-custom-green {
+    color: #198754; /* Verde Bootstrap Success */
+}
+
+.btn-custom-green {
+    background-color: #198754;
+    color: white;
+}
+.btn-custom-green:hover {
+    background-color: #146c43;
+    color: white;
+}
+
+.sidebar-link {
+    color: #333333;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+    background-color: #e8f5e9; /* Fondo verde muy claro */
+    color: #198754; /* Texto verde */
+    font-weight: 500;
+}
+
+.card-custom {
+    border-top: 4px solid #198754; /* Línea verde superior en la tarjeta */
+}
