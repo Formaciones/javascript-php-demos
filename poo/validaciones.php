@@ -1,6 +1,26 @@
 <?php 
     require_once 'funciones.php';
 
+    $matricula = $_POST['matricula'] ?? '';
+    $email = $_POST['email'] ?? '';
+
+    $mensajeMatricula = '';
+    $mensajeEmail = '';
+
+    if($matricula == '') $mensajeMatricula = "Matrícula no válida.";
+    else {
+        $mensajeMatricula = matriculaValida($matricula) == true  
+            ? 'La matrícula <i>' . $matricula . '</i> es válida.' 
+            : 'La matrícula <i>' . $matricula . '</i> no es válida.';
+    }
+
+    if($email == '') $mensajeEmail = "Email no válido.";
+    else {
+        $mensajeEmail = match(emailValido($email)) {
+            true => 'El email <i>' . $email . '</i> es válido.', 
+            false => 'El email <i>' . $email . '</i> no es válido.'
+        };
+    }    
 ?>
 
 <!DOCTYPE html>
@@ -18,19 +38,26 @@
             <div class="col">
                 <h1>Validaciones</h1>
                 <hr />
+                <p><?=  $mensajeEmail ?></p>
+                <p><?=  $mensajeMatricula ?></p>
+                <br />
                 <form action="validaciones.php" method="post">
                     <div class="form-group">
                         <label>Email</label>
                         <input class="form-control" name="email" />
                     </div>
+                    <br />
                     <div class="form-group">
                         <label>Matrícula</label>
                         <input class="form-control" name="matricula" />
                     </div>
+                    <br />
                     <div class="form-group">
                         <label>Matrícula 2</label>
-                        <input class="form-control" name="matricula2" pattern="/^[0-9]{4}[A-Z]{3}$/" required />
-                    </div>                                        
+                        <input class="form-control" name="matricula2" pattern="[0-9]{4}[A-Z]{3}" required />
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Enviar</button>                                        
                 </form>
             </div>
         </div>
