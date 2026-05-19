@@ -16,9 +16,9 @@
 
     if($email == '') $mensajeEmail = "Email no válido.";
     else {
-        $mensajeEmail = match(emailValido($email)) {
-            true => 'El email <i>' . $email . '</i> es válido.', 
-            false => 'El email <i>' . $email . '</i> no es válido.'
+        $mensajeEmail = match(emailValido($email)) { 
+            1 => 'El email <i>' . $email . '</i> es válido.',  
+            0 => 'El email <i>' . $email . '</i> no es válido.' 
         };
     }    
 ?>
@@ -54,7 +54,7 @@
                     <br />
                     <div class="form-group">
                         <label>Matrícula 2</label>
-                        <input class="form-control" name="matricula2" pattern="[0-9]{4}[A-Z]{3}" required />
+                        <input class="form-control" name="matricula2" pattern="[0-9]{4}[A-Z]{3}" />
                     </div>
                     <br />
                     <button type="submit" class="btn btn-primary">Enviar</button>                                        
