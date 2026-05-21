@@ -8,7 +8,7 @@
     */
 
     function generarResumenPedidos() {
-        global $pedidos;
+        global $pedidos;        
 
         $resumen = [];
 
@@ -84,7 +84,7 @@
         return $pedidos[$index];
     }
 
-    function buscarPedidoPorId2( $numeroPedidoBuscar)
+    function buscarPedidoPorId2($numeroPedidoBuscar)
     {
         global $pedidos;
 
@@ -169,7 +169,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach(generarResumenPedidos() as $pedido): ?>                                                      
+                        <?php foreach(generarResumenPedidos2() as $pedido): ?>                                                      
                         <tr>
                             <td><?= $pedido['numeroPedido'] ?></td>
                             <td><?= $pedido['cliente'] ?></td>
