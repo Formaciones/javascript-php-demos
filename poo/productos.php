@@ -52,7 +52,29 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                
+                <h1>Consulta de Productos</h1>
+                <hr />
+                <form method="post">
+                    <div class="form-group">
+                        <label>Referencia</label>
+                        <input type="number" name="referencia" class="form-control" />
+                        <br />
+                        <button type="submit" class="btn btn-warning">Consultar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h3></h3>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
