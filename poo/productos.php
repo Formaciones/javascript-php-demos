@@ -1,42 +1,13 @@
 <?php
     require_once 'datos2.php';
+    require_once 'productoClass.php';
 
-    class Producto {
-        public $productId;
-        public $productName;
-        public $supplierId;
-        public $categoryId;
-        public $quantityPerUnit;
-        public $unitPrice;
-        public $unitsInStock;
-        public $unitsOnOrder;
-        public $reorderLevel;
-        public $discontinued;
+    // Leemos del formulario referencia
+    $referencia = (int) ($_POST['referencia'] ?? '-1');
 
-        public function __construct(
-            $productId = null,
-            $productName = '',
-            $supplierId = null,
-            $categoryId = null,
-            $quantityPerUnit = '',
-            $unitPrice = 0,
-            $unitsInStock = 0,
-            $unitsOnOrder = 0,
-            $reorderLevel = 0,
-            $discontinued = 0
-        ) {
-            $this->productId = $productId;
-            $this->productName = $productName;
-            $this->supplierId = $supplierId;
-            $this->categoryId = $categoryId;
-            $this->quantityPerUnit = $quantityPerUnit;
-            $this->unitPrice = $unitPrice;
-            $this->unitsInStock = $unitsInStock;
-            $this->unitsOnOrder = $unitsOnOrder;
-            $this->reorderLevel = $reorderLevel;
-            $this->discontinued = $discontinued;
-        }        
-    }
+    // Instanciamos y cargamos datos
+    $producto = new Producto();
+    if ($referencia != -1) $producto->loadData($referencia);
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +30,9 @@
                         <label>Referencia</label>
                         <input type="number" name="referencia" class="form-control" />
                         <br />
-                        <button type="submit" class="btn btn-warning">Consultar</button>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-warning">Consultar</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -69,7 +42,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header bg-primary">
-                        <h3></h3>
+                        <h3 style="color: white">Ficha de <?= $producto->productName ?></h3>
                     </div>
                     <div class="card-body">
 
