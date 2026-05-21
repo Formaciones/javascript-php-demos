@@ -1,3 +1,44 @@
+<?php
+    require_once 'datos2.php';
+
+    class Producto {
+        public $productId;
+        public $productName;
+        public $supplierId;
+        public $categoryId;
+        public $quantityPerUnit;
+        public $unitPrice;
+        public $unitsInStock;
+        public $unitsOnOrder;
+        public $reorderLevel;
+        public $discontinued;
+
+        public function __construct(
+            $productId = null,
+            $productName = '',
+            $supplierId = null,
+            $categoryId = null,
+            $quantityPerUnit = '',
+            $unitPrice = 0,
+            $unitsInStock = 0,
+            $unitsOnOrder = 0,
+            $reorderLevel = 0,
+            $discontinued = 0
+        ) {
+            $this->productId = $productId;
+            $this->productName = $productName;
+            $this->supplierId = $supplierId;
+            $this->categoryId = $categoryId;
+            $this->quantityPerUnit = $quantityPerUnit;
+            $this->unitPrice = $unitPrice;
+            $this->unitsInStock = $unitsInStock;
+            $this->unitsOnOrder = $unitsOnOrder;
+            $this->reorderLevel = $reorderLevel;
+            $this->discontinued = $discontinued;
+        }        
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
