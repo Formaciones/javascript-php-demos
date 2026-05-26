@@ -1,6 +1,8 @@
 <?php 
-$tituloPagina = 'Gestión Clientes';
-$paginaActiva = 'clientes';
+    $tituloPagina = 'Gestión Clientes';
+    $paginaActiva = 'clientes';
+
+    require_once 'ApiCustomers.php';
 
 ?>
 <!DOCTYPE html>

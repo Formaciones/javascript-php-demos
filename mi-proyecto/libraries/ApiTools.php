@@ -30,5 +30,39 @@
        
         // Ejecutamos o enviamos la petición y capturamos la respuesta
         $response = curl_exec($ch);
+
+        // Colección para el Resultado
+        $result = [
+            'http_status_code' => null,
+            'http_status_desc' => null,
+            'headers' => null,
+            'body' => null,
+            'error' => null
+        ];
+
+        // Cuando se produce un error en la llamada HTTP
+        if ($response === false) $result['error'] = curl_error($ch);
+        else {
+            // Cuando NO se produce un error en la llamada HTTP
+            $response_headers_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+            $response_headers = substr($response, 0, $response_headers_size);
+            $response_body = substr($response, $response_headers_size);
+            
+            $result['headers'] = $response_headers;
+            $result['body'] = $response_body;
+
+            $result['http_status_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            // HTTP/1.1 200 OK
+            $firstLine = strtok($response_headers, "\r\n");
+            if ($firstLine && preg_match('#HTTP/[^ ]+\s+\d+\s+(.+)#', $firstLine, $m)) {
+                $result['http_status_desc'] = $m[1];
+            }
+        }
+
+        // Cerrar el canal de comunicación 
+        curl_close($ch);
+
+        return $result;
     }
 ?>
