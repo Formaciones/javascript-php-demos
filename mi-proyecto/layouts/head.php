@@ -9,6 +9,9 @@
     <!-- Iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
  
+    <!-- Estos Datatable -->
+    <link href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css" rel="stylesheet" />
+
     <!-- Hoja de Estilos de la página -->
     <link href="assets/css/styles.css" rel="stylesheet" />
 </head>

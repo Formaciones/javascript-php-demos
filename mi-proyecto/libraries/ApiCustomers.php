@@ -1,5 +1,6 @@
 <?php 
-    require_once 'ApiTools.php';
+    require_once 'libraries/ApiTools.php';
+    require_once 'models/Customer.php';
 
     $baseUrl = 'https://gesnorthwind.azurewebsites.net/customers';
 
@@ -10,7 +11,7 @@
         $headers = [];
         $body = null;
 
-        call_api($url, 'GET', $headers, $body);
+        return call_api($url, 'GET', $headers, $body);
     }
 
     function get_customer($id) {
@@ -20,7 +21,7 @@
         $headers = [];
         $body = null;
 
-        call_api($url, 'GET', $headers, $body);
+        return call_api($url, 'GET', $headers, $body);
     }
 
 ?>
