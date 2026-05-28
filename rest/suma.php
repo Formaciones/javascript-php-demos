@@ -22,7 +22,7 @@
         // $n2 = $_POST['n2'] ?? null;
 
         // Leer los datos de un JSON del Body
-        $raw = file_get_contents('php:/input');     // JSON texto
+        $raw = file_get_contents('php://input');     // JSON texto
         $data = json_decode($raw, true);
 
         $n1 = $data['n1'] ?? null;
@@ -31,13 +31,15 @@
         http_response_code(405);
         $response['error'] = $method . ' método no soportado, utilizar GET o POST';
         echo json_encode($response);
+        exit;
     }
 
     // Validación para ver si recibimos datos
     if($n1 === null || $n1 === '' || $n2 === null || $n2 === '') {
         http_response_code(400);
         $response['error'] = 'Parámetros n1 y n2 son obligatorios';
-        echo json_encode($response);        
+        echo json_encode($response);
+        exit;      
     }
 
     // Validar que los datos son numéricos
@@ -47,7 +49,8 @@
     if($num1 === null || $num2 === null) {
         http_response_code(400);
         $response['error'] = 'Parámetros n1 y n2 deben de ser valores numéricos';
-        echo json_encode($response);        
+        echo json_encode($response);
+        exit;      
     }
 
     $response['n1'] = $num1;

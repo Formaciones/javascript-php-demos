@@ -12,6 +12,21 @@
         <div class="row">
             <div class="col">
                 
+                <form action="" method="get">
+                    <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" name="" />
+                    </div>
+                    <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" name="" />
+                    </div>
+                    <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" name="" />
+                    </div>                    
+                </form>
+
             </div>
         </div>
     </div>
