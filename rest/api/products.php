@@ -43,6 +43,7 @@ try {
 
         http_response_code(200);
         echo json_encode($products);
+        exit;
     } elseif($method == 'GET' && $id != null) {              
         // $query = 'SELECT * FROM products WHERE ProductID = ' . $id;
         // $cursor = $pdo->query($query);
@@ -54,7 +55,8 @@ try {
         $product = $stmt->fetch();
 
         http_response_code(200);
-        echo json_encode($product);        
+        echo json_encode($product);
+        exit;      
     } else {
         http_response_code(405);
         echo json_encode([
