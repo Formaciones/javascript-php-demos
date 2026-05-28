@@ -34,13 +34,27 @@ $options = [
 try {
     $pdo = new PDO($connection, $db_user, $db_pass, $options);
 
-    if($method == 'GET') {
-        $query = 'SELECT  * FROM products';
-        $cursor = $pdo->query($query);
+    $id = $_GET['id'] ?? null;
+
+    if($method == 'GET' && $id == null) {
+        $query = 'SELECT * FROM products';
+        $cursor = $pdo->query($query);          // QUERY retorna un curso (incluso un array vacio)
         $products = $cursor->fetchAll();
 
         http_response_code(200);
-        echo json_encode($products);        
+        echo json_encode($products);
+    } elseif($method == 'GET' && $id != null) {              
+        // $query = 'SELECT * FROM products WHERE ProductID = ' . $id;
+        // $cursor = $pdo->query($query);
+        // $products = $cursor->fetchAll();
+
+        $query = 'SELECT * FROM products WHERE ProductID = ?';
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id]);                  // EXCUTE retorna true o false dependiendo de la ejecución del comando
+        $product = $stmt->fetch();
+
+        http_response_code(200);
+        echo json_encode($product);        
     } else {
         http_response_code(405);
         echo json_encode([
@@ -55,7 +69,7 @@ try {
     echo json_encode([
         'code' => 500, 
         'details' => $e->getMessage(),
-        'error' => 'Error al contectar con la base de datos.']);
+        'error' => 'Error de aplicación o base de datos.']);
     exit;
 }
 ?>
