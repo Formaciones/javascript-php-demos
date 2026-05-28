@@ -5,13 +5,13 @@
     // $n1 = $_GET['n1'] ?? null;
     // $n2 = $_GET['n2'] ?? null;
 
-    // $url = 'http://localhost/demos/rest/suma.php?n1=' . $n1 . '&n2=' . $n2;
+    // $url = 'http://localhost/demos/rest/api/suma.php?n1=' . $n1 . '&n2=' . $n2;
     // $response = call_api($url, 'GET');
 
     // POST
     $n1 = $_POST['n1'] ?? null;
     $n2 = $_POST['n2'] ?? null;    
-    $url = 'http://localhost/demos/rest/suma.php';
+    $url = 'http://localhost/demos/rest/api/suma.php';
     $response = call_api($url, 'POST', body: json_encode(['n1' => $n1, 'n2' => $n2]));
 
     $data = json_decode($response['body'], true);
