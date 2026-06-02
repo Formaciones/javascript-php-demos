@@ -37,16 +37,18 @@
 
                 <button type="button" class="btn btn-primary" id="mas">Ampliar</button>
                 <button type="button" class="btn btn-primary" id="menos">Reducir</button>
+                <button type="button" class="btn btn-primary" id="b0">Procesar</button>
+                <button type="button" class="btn btn-primary btn-procesar" id="b10">Procesar</button>
                 <br />
                 <br />      
                 <div class="row">
                     <div class="col">
                         <label>Procesado con JS</label>
-                        <textarea class="form-control" rows="15"></textarea>
+                        <textarea id="t1" class="form-control" rows="15"></textarea>
                     </div>
                     <div class="col">
                         <label>Procesado con jQuery</label>
-                        <textarea class="form-control" rows="15"></textarea>
+                        <textarea id="t2" class="form-control" rows="15"></textarea>
                     </div>                    
                 </div>
                 
@@ -71,7 +73,7 @@
                 <br />
                 <br />
 
-                <table class="table table-stiped">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -86,6 +88,7 @@
             </div>
         </div>
     </div>
+    <br /><br /><br /><br />
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -109,10 +112,48 @@
 
         // Selectore complejos
         var item3 = document.querySelectorAll('button[id="b1"]');
-        var item4 = $('button[id="b1"]')
+        var item4 = $('button[id="b1"]');
 
-        console.log(boton1a);
-        console.log(boton1b);
+        ///////////////////////////////////////////////////////////////////////
+
+        $('.btn-procesar').click(function() {
+            var t2 = $('#t2');
+            t2.val($('h1').html());
+
+            $('h1').html('Modificado desde jQuery');
+            $('h1').css({'color': 'blue'});
+            $('h1').css('color', 'blue');
+        });
+
+        ///////////////////////////////////////////////////////////////////////
+        
+        document.getElementById('b0').onclick = function() {
+            var t1 = document.getElementById('t1');
+            t1.innerHTML = document.getElementsByTagName('h1')[0].innerHTML;
+
+            document.getElementsByTagName('h1')[0].innerHTML = 'Modificado desde Javascript';
+            document.getElementsByTagName('h1')[0].style.color = 'blue';
+
+            console.log('pulso procesar');
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+
+        document.getElementById('b1').onclick = function() {
+            let nombre = document.getElementsByName('nombre')[0].value;
+            let ciudad = document.getElementsByName('ciudad')[0].value;
+            let fecha = document.getElementsByName('fecha')[0].value;
+
+            let tbody = document.getElementsByTagName('tbody')[0];
+            tbody.innerHTML = tbody.innerHTML + '<tr><td>' + nombre + '</td><td>' + ciudad + '</td><td>' + fecha+ '</td></tr>';
+
+            document.getElementsByName('nombre')[0].value = '';
+            document.getElementsByName('ciudad')[0].value = '';
+            document.getElementsByName('fecha')[0].value = '';
+        }
+
+        console.log();
+
     </script>
 </body>
 </html>
