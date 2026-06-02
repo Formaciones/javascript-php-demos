@@ -8,7 +8,7 @@
         global $baseUrl;
 
         $url = $baseUrl;
-        $headers = [];
+        $headers = ['apikey: 1234567890.'];
         $body = null;
 
         return call_api($url, 'GET', $headers, $body);
@@ -18,7 +18,7 @@
         global $baseUrl;
         
         $url = $baseUrl . '/' . $id;
-        $headers = [];
+        $headers = ['apikey: 1234567890.'];
         $body = null;
 
         return call_api($url, 'GET', $headers, $body);

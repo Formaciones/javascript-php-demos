@@ -6,8 +6,7 @@
         // Establecemos las cabeceras por defecto o globales a toda la aplicación
         $defaultHeaders = [
             'Content-Type: application/json', 
-            'Accept: application/json',
-            'apikey: 1234567890.'
+            'Accept: application/json'            
         ];
 
         // Unimos cabeceras globales con cabeceras especificas de una página o llamada
