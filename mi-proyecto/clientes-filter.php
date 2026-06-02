@@ -9,10 +9,18 @@
     ];
 
     $company = $_POST['company'] ?? null;
+    $city = $_POST['city'] ?? null;
+    $country = $_POST['country'] ?? null;
 
-    $result = list_customers($company);
     $data = null;
-    if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
+    $result = null;
+
+    if($company != null || $city != null || ($country != 'all' && $country != null)) {
+        if($country == 'all') $country = null;
+        $result = list_customers($company, $city, $country);
+        if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

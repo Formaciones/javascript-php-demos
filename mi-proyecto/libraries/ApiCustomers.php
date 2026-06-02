@@ -8,12 +8,12 @@
         global $baseUrl;
 
         // Ejemplo: https://gesnorthwind.azurewebsites.net/customers?company=Comidad&city=Berlin&Country=Germany
-        $param = '';
-        $param += ($param != '' ? '&' : '') . ($company != null ? 'company=' . $company : '');
-        $param += ($param != '' ? '&' : '') . ($city != null ? 'city=' . $city : '');
-        $param += ($param != '' ? '&' : '') . ($country != null ? 'country=' . $country : '');
+        $params = '';
+        $params .= ($params != '' ? '&' : '') . ($company != null ? 'company=' . $company : '');
+        $params .= ($params != '' ? '&' : '') . ($city != null ? 'city=' . $city : '');
+        $params .= ($params != '' ? '&' : '') . ($country != null ? 'country=' . $country : '');
 
-        $url = $baseUrl . ($param != null ? '?' . $param : '');
+        $url = $baseUrl . ($params != null ? '?' . $params : '');
 
         $headers = ['apikey: 1234567890.'];
         $body = null;
