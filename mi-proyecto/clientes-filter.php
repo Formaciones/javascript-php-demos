@@ -26,8 +26,7 @@
                 <div class="container-fluid">
                     
                     <!-- Título de la página -->
-                    <h1 class="mb-4 text-custom-green fw-bold">Gestión de Clientes</h1>                    
-                    <hr />
+                    <h1 class="mb-4 text-custom-green fw-bold">Gestión de Clientes</h1>                                        
                    
                     <div class="card shadow-sm card-custom mb-4">
                         <div class="card-header bg-white py-3">
@@ -46,7 +45,10 @@
                                 <div class="col-3">
                                     <label>País</label>
                                     <select class="form-select" name="country">
-
+                                        <option value="all">Todos los países</option>
+                                    <?php foreach($countries as $country): ?>
+                                        <option><?= $country ?></option>
+                                    <?php endforeach;?>
                                     </select>                                                                        
                                 </div>
                                 <div class="col-2 d-flex align-items-end">
@@ -57,7 +59,7 @@
                             </form>
                         </div>
                     </div>                    
-
+                    <hr />
                     <table class="table table-striped">
                         <thead>
                             <tr>
