@@ -4,10 +4,17 @@
 
     $baseUrl = 'https://gesnorthwind.azurewebsites.net/customers';
 
-    function list_customers() {
+    function list_customers($company = null, $city = null, $country = null) {
         global $baseUrl;
 
-        $url = $baseUrl;
+        // Ejemplo: https://gesnorthwind.azurewebsites.net/customers?company=Comidad&city=Berlin&Country=Germany
+        $param = '';
+        $param += ($param != '' ? '&' : '') . ($company != null ? 'company=' . $company : '');
+        $param += ($param != '' ? '&' : '') . ($city != null ? 'city=' . $city : '');
+        $param += ($param != '' ? '&' : '') . ($country != null ? 'country=' . $country : '');
+
+        $url = $baseUrl . ($param != null ? '?' . $param : '');
+
         $headers = ['apikey: 1234567890.'];
         $body = null;
 

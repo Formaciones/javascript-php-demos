@@ -8,7 +8,11 @@
         'Argentina','Austria','Belgium','Brazil','Canada','Denmark','Finland','France','Germany','Ireland','Italy','Mexico','Norway','Poland','Portugal','Spain','Sweden','Switzerland','UK','USA','Venezuela'
     ];
 
+    $company = $_POST['company'] ?? null;
+
+    $result = list_customers($company);
     $data = null;
+    if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
