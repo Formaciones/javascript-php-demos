@@ -32,15 +32,15 @@
                             <form method="post" class="row g-2 mb-3">
                                 <div class="col-3">
                                     <label>Nombre de la Empresa</label>
-                                    <input type="text" class="form-control" name="company" placeholder="Empresa ..." />
+                                    <input type="text" class="form-control" id="company" name="company" placeholder="Empresa ..." />
                                 </div>
                                 <div class="col-3">
                                     <label>Ciudad</label>
-                                    <input type="text" class="form-control" name="city" placeholder="Ciudad ..." />                                    
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="Ciudad ..." />                                    
                                 </div>
                                 <div class="col-3">
                                     <label>País</label>
-                                    <select class="form-select" name="country">
+                                    <select class="form-select" id="country" name="country">
                                         <option value="all">Todos los países</option>
                                     <?php foreach($countries as $country): ?>
                                         <option><?= $country ?></option>
@@ -85,6 +85,11 @@
         // jQuery
         $(document).ready(function() {
             app.Pages.Customers.OnLoad();
+
+            // console.log('Genérico');
+            // console.info('Información');
+            // console.warn('Advertencía');
+            // console.error('Error');
         });
 
         // JS
