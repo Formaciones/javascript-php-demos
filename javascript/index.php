@@ -34,6 +34,9 @@
                 <h1>Demos JS y jQuery</h1>
                 <p id="p1"><b class="colornaranja">Nombre:</b> <?= $nombre ?></p>
                 <hr />
+                <img src="https://lonelyplanetes.cdnstatics2.com/cdn/ff/Te4_yv6il3QoMpy8CnrGajzAwLPcGI8b_ML7F54kq34/1693385745/public/styles/wide/public/inline-images/espana_galicia_cies_playarodas_shutterstock_1199258830_lunamarina_shutterstock.jpg" class="image" style="height: 100px; width:auto;" />
+
+                <br /><br />
 
                 <button type="button" class="btn btn-primary" id="mas">Ampliar</button>
                 <button type="button" class="btn btn-primary" id="menos">Reducir</button>
@@ -57,7 +60,7 @@
                 <form action="" method="get">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nomnbre" />
+                        <input type="text" class="form-control" name="nombre" id="nombre" />
                     </div>
                     <div class="form-group">
                         <label>Ciudad</label>
@@ -69,6 +72,8 @@
                     </div>
                     <br />
                     <button type="button" class="btn btn-primary" id="b1">Procesar</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-primary" id="b8">Procesar</button>
                 </form>
                 <br />
                 <br />
@@ -145,14 +150,45 @@
             let fecha = document.getElementsByName('fecha')[0].value;
 
             let tbody = document.getElementsByTagName('tbody')[0];
-            tbody.innerHTML = tbody.innerHTML + '<tr><td>' + nombre + '</td><td>' + ciudad + '</td><td>' + fecha+ '</td></tr>';
+            tbody.innerHTML = tbody.innerHTML + '<tr><td>' + nombre + '</td><td>' + ciudad + '</td><td>' + fecha + '</td></tr>';
 
             document.getElementsByName('nombre')[0].value = '';
             document.getElementsByName('ciudad')[0].value = '';
             document.getElementsByName('fecha')[0].value = '';
         }
 
-        console.log();
+        $('#b8').on('click', function() {
+            $('tbody').html($('tbody').html() 
+                + `<tr><td>${$('#nombre').val()}</td>`
+                + `<td>${$('input[name="ciudad"]').val()}</td>`
+                + `<td>${$('input[name="fecha"]').val()}</td></tr>`);
+
+            $('#nombre').val('');
+            $('input[name="ciudad"]').val('');
+            $('input[name="fecha"]').val('');                
+        });
+
+        ///////////////////////////////////////////////////////////////////////
+
+        document.getElementById('mas').onclick = function(e) {
+            console.log(document.getElementsByTagName('img')[0].style.height);
+            console.log(document.getElementsByTagName('img')[0].offsetHeight);
+            console.log(parseInt(document.getElementsByTagName('img')[0].style.height));
+
+            document.getElementsByTagName('img')[0].style.height =
+               (document.getElementsByTagName('img')[0].offsetHeight + 50) + 'px';
+        };
+
+        $('#menos').on('click', function() {
+            console.log($('img').css('height'));
+            console.log($('img').eq(0).height());
+            console.log($('img').height());
+            console.log(parseInt($('img').css('height')));
+
+            if($('img').height() > 59) 
+                //$('img').css('height', `${($('img').height() - 50)}px`);
+                $('img').animate({'height': `${($('img').height() - 50)}px`}, 1000);                    
+        });
 
     </script>
 </body>

@@ -8,6 +8,9 @@
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
 
+    <!-- App JS -->
+    <script src="assets/js/app.js"></script>
+
     <!-- Script para activar/esconder el menú lateral -->
     <script>
         const menuToggle = document.getElementById('menu-toggle');
