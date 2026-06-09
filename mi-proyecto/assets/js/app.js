@@ -31,7 +31,7 @@ var app = {
 
                 //JS Click boton B1
                 document.getElementById('b1').onclick = (e) => {
-                    let resultado = app.Pages.Customers.Search3();
+                    let resultado = app.Pages.Customers.Search4();
                 };
 
                 // //jQuery (opción, mediante style -> Display)
@@ -105,7 +105,7 @@ var app = {
                 const url = app.Core.API_BASE + '/customers' + (qs ? `?${qs}` : '');
 
                 app.Tools.ShowItem(document.getElementById('loading'));
-                
+
                 $.get(url, {'apikey': app.Core.API_KEY}).done(function(data) {
                     app.Pages.Customers.RenderTable(data);
                 }).fail(function(err) {
@@ -115,7 +115,27 @@ var app = {
                 });
             },
             Search4: function() {
+                // jQuery mediante la función AJAX()
+                const qs = app.Pages.Customers.BuildQueryString();
+                const url = app.Core.API_BASE + '/customers' + (qs ? `?${qs}` : '');
                 
+                $.ajax({
+                    url: url,
+                    async: true,
+                    method: 'GET',
+                    //data: '<objeto con los datos enviado al API>',
+                    headers: {'apikey': app.Core.API_KEY, 'Content-Type': 'application/json'},
+                    beforeSend: function() { app.Tools.ShowItem(document.getElementById('loading')); },
+                    //success: function(data) {  app.Pages.Customers.RenderTable(data); },
+                    error: function(jqXHR, textStatus, errorThrown) { console.error('jQuery Error:', errorThrown); },
+                    complete: function() { app.Tools.HideItem(document.getElementById('loading')); },
+                    statusCode: {
+                        200: function(data) {  app.Pages.Customers.RenderTable(data); },
+                        401: function(jqXHR, textStatus, errorThrown) { 
+                            alert(errorThrown); 
+                        }
+                    }
+                });
             },
             BuildQueryString: function() {
                 // Parámetros de filtrado
