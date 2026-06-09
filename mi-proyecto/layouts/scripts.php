@@ -9,7 +9,7 @@
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
 
     <!-- App JS -->
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app.js?t=<?= time() ?>"></script>
 
     <!-- Script para activar/esconder el menú lateral -->
     <script>

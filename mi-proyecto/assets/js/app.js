@@ -31,7 +31,7 @@ var app = {
 
                 //JS Click boton B1
                 document.getElementById('b1').onclick = (e) => {
-                    let resultado = app.Pages.Customers.Search1();
+                    let resultado = app.Pages.Customers.Search3();
                 };
 
                 // //jQuery (opción, mediante style -> Display)
@@ -47,6 +47,7 @@ var app = {
                 // });
             },
             Search1: async function() {
+                // JS utilizando fetch()                
                 const qs = app.Pages.Customers.BuildQueryString();
                 const url = app.Core.API_BASE + '/customers' + (qs ? `?${qs}` : '');
 
@@ -76,10 +77,42 @@ var app = {
                 }
             },
             Search2: function() {
-                
+                // JS utilizando XMLHttpRequest
+                const qs = app.Pages.Customers.BuildQueryString();
+                const url = app.Core.API_BASE + '/customers' + (qs ? `?${qs}` : '');
+                const xhr = new XMLHttpRequest();
+
+                xhr.open('GET', url, true);                             // NO inicia la comunicación
+                xhr.setRequestHeader('apikey', app.Core.API_KEY);                
+                xhr.onreadystatechange = function() {
+                    console.log('XHR: ' + xhr.readyState);
+                    if(xhr.readyState === 4) {
+                        if(xhr.status >= 200 && xhr.status < 300) {
+                            const data = JSON.parse(xhr.responseText);
+                            app.Pages.Customers.RenderTable(data);
+                        } else {
+                            console.error('XMLHttpRequest Error:', xhr.status, xhr.statusText);
+                        }
+                        app.Tools.HideItem(document.getElementById('loading'));
+                    }
+                };
+                app.Tools.ShowItem(document.getElementById('loading'));
+                xhr.send();                                             // Inicia la conexión con el APITRest
             },
             Search3: function() {
+                // jQuery mediante la función GET()
+                const qs = app.Pages.Customers.BuildQueryString();
+                const url = app.Core.API_BASE + '/customers' + (qs ? `?${qs}` : '');
+
+                app.Tools.ShowItem(document.getElementById('loading'));
                 
+                $.get(url, {'apikey': app.Core.API_KEY}).done(function(data) {
+                    app.Pages.Customers.RenderTable(data);
+                }).fail(function(err) {
+                    console.error('jQuery Error:', err);
+                }).always(function() {
+                    app.Tools.HideItem(document.getElementById('loading'));
+                });
             },
             Search4: function() {
                 
