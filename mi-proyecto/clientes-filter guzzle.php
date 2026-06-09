@@ -20,14 +20,16 @@
 
     if($company != null || $city != null || ($country != 'all' && $country != null)) {
         // Crear el cliente HTTP
-        $baseUrl = 'https://gesnorthwind.azurewebsites.net/customers';
+        $baseUrl = 'https://gesnorthwind.azurewebsites.net/';
+
+        if($country == 'all') $country = null;
 
         $params = '';
         $params .= ($params != '' ? '&' : '') . ($company != null ? 'company=' . $company : '');
         $params .= ($params != '' ? '&' : '') . ($city != null ? 'city=' . $city : '');
         $params .= ($params != '' ? '&' : '') . ($country != null ? 'country=' . $country : '');
 
-        $url = $baseUrl . ($params != null ? '?' . $params : '');
+        $url = 'customers' . ($params != null ? '?' . $params : '');
 
         $headers = [
             'apikey'        => '1234567890.',
@@ -36,14 +38,14 @@
         ];           
         
         $client = new Client([
-            'base_uri' => $url,
+            'base_uri' => $baseUrl,
             'timeout' => 15
         ]);
 
+        $response = $client->get($url);
 
+        
 
-        if($country == 'all') $country = null;
-        $result = list_customers($company, $city, $country);
         if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
     }
 
