@@ -1,5 +1,5 @@
 <?php 
-    require_once 'vendor/autoload.php';
+    require_once  '../demos/mi-proyecto/vendor/autoload.php';
 
     use GuzzleHttp\Client;
     use GuzzleHttp\Exception\RequestException;
@@ -46,13 +46,8 @@
             'headers' => $headers
         ]);
 
-        echo '<h1>Status Code:' . $response->getStatusCode() . '</h1><br />';
-        echo '<p>' . $response->getBody() . '</p>';
-
-
-        //if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
+        if($response->getStatusCode() == 200) $data = json_decode($response->getBody(), true);
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +127,9 @@
                                         <small><?= $customer['postalCode'] ?> <?= $customer['city'] ?> (<?= $customer['country'] ?>)</small>
                                     </td>
                                     <td><?= $customer['phone'] ?></td>
-                                    <td> </td>
+                                    <td> 
+                                        <a href=""
+                                    </td>
                                 </tr>
                             <?php 
                                 endforeach; 
