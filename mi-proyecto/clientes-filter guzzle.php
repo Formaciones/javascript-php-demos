@@ -42,11 +42,15 @@
             'timeout' => 15
         ]);
 
-        $response = $client->get($url);
+        $response = $client->get($url, [
+            'headers' => $headers
+        ]);
 
-        
+        echo '<h1>Status Code:' . $response->getStatusCode() . '</h1><br />';
+        echo '<p>' . $response->getBody() . '</p>';
 
-        if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
+
+        //if($result['http_status_code'] == 200) $data = json_decode($result['body'], true);
     }
 
 ?>
