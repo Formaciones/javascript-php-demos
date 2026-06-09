@@ -128,7 +128,7 @@
                                     </td>
                                     <td><?= $customer['phone'] ?></td>
                                     <td> 
-                                        <a href=""
+                                        <a class="btn btn-sm btn-success" href="clientes-ficha.php?id=<?= $customer['customerID'] ?>">ver ficha</a>
                                     </td>
                                 </tr>
                             <?php 
