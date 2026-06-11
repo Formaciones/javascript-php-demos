@@ -11,6 +11,8 @@
         'Argentina','Austria','Belgium','Brazil','Canada','Denmark','Finland','France','Germany','Ireland','Italy','Mexico','Norway','Poland','Portugal','Spain','Sweden','Switzerland','UK','USA','Venezuela'
     ];
 
+    $mensaje = $_GET['mensaje'] ?? '';
+
     $company = $_POST['company'] ?? null;
     $city = $_POST['city'] ?? null;
     $country = $_POST['country'] ?? null;
@@ -100,6 +102,17 @@
                         </div>
                     </div>                    
                     <hr />
+
+                    <?php if($mensaje != ''): ?>
+                    <div id="block-alert">
+                        <br />
+                        <div class="alert alert-info" role="alert">
+                            <?= $mensaje ?>
+                        </div>
+                        <br />
+                    </div>
+                    <?php endif; ?>                    
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -178,6 +191,10 @@
                     url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/es-ES.json'
                 }
             });
+
+            setTimeout(function() {
+                $('#block-alert').fadeOut()
+            }, 3000);            
 
             $('.btn-eliminar').on('click', function() {
                 $('.modal-title').text('Eliminar Cliente');
