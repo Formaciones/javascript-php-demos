@@ -27,6 +27,8 @@
 
     if($_SERVER["REQUEST_METHOD"] == 'GET') {    
         $id = $_GET['id'] ?? '';
+        $op = $_GET['op'] ?? '';
+        
         $url = 'customers' . '/' . $id;
 
         $response = $client->get($url, [
