@@ -73,7 +73,7 @@
                         </div>
                         <div class="card-body bg-white">
                             <form method="post" class="row g-2 mb-3">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label>Nombre de la Empresa</label>
                                     <input type="text" class="form-control" name="company" placeholder="Empresa ..." />
                                 </div>
@@ -90,10 +90,11 @@
                                     <?php endforeach;?>
                                     </select>                                                                        
                                 </div>
-                                <div class="col-2 d-flex align-items-end">
+                                <div class="col-3 d-flex align-items-end">
                                      &nbsp; &nbsp;
                                     <button type="submit" class="btn btn-success">Buscar</button> &nbsp;
-                                    <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+                                    <button type="reset" class="btn btn-outline-secondary">Limpiar</button> &nbsp; &nbsp; &nbsp;
+                                    <a class="btn btn-info" href="clientes-ficha.php?op=nuevo">Nuevo</a>
                                 </div>
                             </form>
                         </div>
