@@ -147,6 +147,10 @@
         </div>
     </div>
 
+    <form id="formdelete" method="post" action="clientes-eliminar.php">
+        <input type="hidden" id="customerID" name="customerID" />
+    </form>
+
     <!-- MODAL Bootstrap -->
     <div class="modal" tabindex="-1">
         <div class="modal-dialog">
@@ -159,8 +163,8 @@
                     <p>Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-danger">Sí, eliminar</button>
+                    <button type="button" id="b1m" class="btn btn-success" data-bs-dismiss="modal">No</button>
+                    <button type="button" id="b2m" class="btn btn-danger">Sí, eliminar</button>
                 </div>
             </div>
         </div>
@@ -179,8 +183,14 @@
                 $('.modal-title').text('Eliminar Cliente');
                 $('.modal-body').html('<p>¿Desea eliminar el cliente <b>' + $(this).data('nombre') + '</b>?</p>');
 
+                $('#customerID').val($(this).data('id'));
+
+                $('#b2m').off();
+                $('#b2m').on('click', function() {
+                     $('#formdelete').submit();
+                });
+
                 $('.modal').modal('show');
-                //alert($(this).data('id') + ' ' + $(this).data('nombre'));
             });
         });     
     </script>    
