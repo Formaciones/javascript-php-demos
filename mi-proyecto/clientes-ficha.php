@@ -11,6 +11,7 @@
     $alerta = false;
     $mensaje = '';
     $tipoAlerta = '';
+    $operacion = '';
 
     $baseUrl = 'https://gesnorthwind.azurewebsites.net/';
 
@@ -28,14 +29,21 @@
     if($_SERVER["REQUEST_METHOD"] == 'GET') {    
         $id = $_GET['id'] ?? '';
         $op = $_GET['op'] ?? '';
-        
-        $url = 'customers' . '/' . $id;
 
-        $response = $client->get($url, [
-            'headers' => $headers
-        ]);
+        if($op == 'nuevo') {
+            $cliente = new Customer();
+            $data = (array)$cliente;
+            $operacion = 'nuevo';
+        } else {
+            $url = 'customers' . '/' . $id;
 
-        if($response->getStatusCode() == 200) $data = json_decode($response->getBody(), true);    
+            $response = $client->get($url, [
+                'headers' => $headers
+            ]);
+
+            if($response->getStatusCode() == 200) $data = json_decode($response->getBody(), true);  
+            $operacion = 'editar';
+        }  
     } elseif ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $cliente = new Customer();
 
@@ -58,26 +66,52 @@
         $cliente->region  = $_POST['region'];
         $cliente->phone  = $_POST['phone'];
         $cliente->fax  = $_POST['fax'];
-        
-        $url = 'customers' . '/' . $_POST['customerID'];
 
-        $response = $client->put($url, [
-            'headers'   => $headers,
-            'json'      => $cliente
-        ]);
+        if($_POST['operacion'] == 'editar') {        
+            $url = 'customers' . '/' . $_POST['customerID'];
 
-        if($response->getStatusCode() == 204) {
-            $data = (array)$cliente;
+            $response = $client->put($url, [
+                'headers'   => $headers,
+                'json'      => $cliente
+            ]);
 
-            $alerta = true;
-            $mensaje = 'Ficha de ' . $cliente->companyName . ' actualizada correctamente.';
-            $tipoAlerta = 'alert-success';
+            if($response->getStatusCode() == 204) {
+                $data = (array)$cliente;
+
+                $alerta = true;
+                $mensaje = 'Ficha de ' . $cliente->companyName . ' actualizada correctamente.';
+                $tipoAlerta = 'alert-success';
+            } else {
+                $data = (array)$cliente;
+
+                $alerta = true;
+                $mensaje = 'Error ' . $response->getStatusCode() . ': Ficha de ' . $cliente->companyName . ' NO actualizada.';
+                $tipoAlerta = 'alert-danger';            
+            }
+            $operacion = 'editar';
         } else {
-            $data = (array)$cliente;
+            $url = 'customers';
 
-            $alerta = true;
-            $mensaje = 'Error ' . $response->getStatusCode() . ': Ficha de ' . $cliente->companyName . ' NO actualizada.';
-            $tipoAlerta = 'alert-danger';            
+            $response = $client->post($url, [
+                'headers'   => $headers,
+                'json'      => $cliente
+            ]);
+
+            if($response->getStatusCode() == 201) {
+                $data = (array)$cliente;
+
+                $alerta = true;
+                $mensaje = 'Cliente ' . $cliente->companyName . ' creado correctamente.';
+                $tipoAlerta = 'alert-success';
+                $operacion = 'editar';
+            } else {
+                $data = (array)$cliente;
+
+                $alerta = true;
+                $mensaje = 'Error ' . $response->getStatusCode() . ': El cliente ' . $cliente->companyName . ' NO fue creado.';
+                $tipoAlerta = 'alert-danger';   
+                $operacion = 'nuevo';         
+            }            
         }
     }
 ?>
@@ -118,12 +152,16 @@
                             <?php endif; ?>
 
                             <form method="post" action="">
-    
+                                <input type="hidden" name="operacion" value="<?= $operacion ?>" />
                                 <div class="row mb-3">
                                     <label for="customerID" class="col-md-3 col-form-label text-end"><b>Identificador</b></label>
                                     <div class="col-md-9">
-                                        <input type="hidden" id="customerID-hidden" name="customerID" value="<?= $data["customerID"] ?>" />
-                                        <input type="text" class="form-control" id="customerID" name="customerID" value="<?= $data["customerID"] ?>" disabled />
+                                        <?php 
+                                            if ($operacion == 'editar')
+                                                echo '<input type="hidden" id="customerID-hidden" name="customerID" value="' . $data["customerID"] . '" />';
+                                        ?>
+                                        <input type="text" class="form-control" id="customerID" 
+                                            name="customerID" value="<?= $data["customerID"] ?>" <?php echo ($operacion == 'editar' ? 'disabled': '') ?> />
                                     </div>
                                 </div>
 
@@ -236,6 +274,10 @@
             setTimeout(function() {
                 $('#block-alert').fadeOut()
             }, 3000);
+
+            $('#companyName').on('input', function() {
+                $('.card-title').text($(this).val());
+            });
         });
     </script>
 </body>
