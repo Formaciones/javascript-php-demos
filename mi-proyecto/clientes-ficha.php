@@ -64,7 +64,7 @@
             'json'      => $cliente
         ]);
 
-        if($response->getStatusCode() == 201) {
+        if($response->getStatusCode() == 204) {
             $data = (array)$cliente;
 
             $alerta = true;
@@ -74,7 +74,7 @@
             $data = (array)$cliente;
 
             $alerta = true;
-            $mensaje = 'Ficha de ' . $cliente->companyName . ' NO actualizada.';
+            $mensaje = 'Error ' . $response->getStatusCode() . ': Ficha de ' . $cliente->companyName . ' NO actualizada.';
             $tipoAlerta = 'alert-danger';            
         }
     }
@@ -102,18 +102,19 @@
                         <div class="card-header bg-white py-3">
                             <h5 class="card-title m-0 text-secondary fw-semibold"><?= $data["companyName"] ?></h5>
                         </div>
-                        
-                        <?php if($alerta == true): ?>
-                        <div id="block-alert">
-                            <br />
-                            <div class="alert <?= $tipoAlerta ?>" role="alert">
-                                <?= $mensaje ?>
-                            </div>
-                            <br />
-                        </div>
-                        <?php endif; ?>
-
+                    
                         <div class="card-body bg-white">
+
+                            <?php if($alerta == true): ?>
+                            <div id="block-alert">
+                                <br />
+                                <div class="alert <?= $tipoAlerta ?>" role="alert">
+                                    <?= $mensaje ?>
+                                </div>
+                                <br />
+                            </div>
+                            <?php endif; ?>
+
                             <form method="post" action="">
     
                                 <div class="row mb-3">
@@ -229,7 +230,7 @@
 
     <?php require_once __DIR__ . '/layouts/scripts.php'; ?>
     <script>
-        $(documet).ready(function() {
+        $(document).ready(function() {
             setTimeout(function() {
                 $('#block-alert').fadeOut()
             }, 3000);
