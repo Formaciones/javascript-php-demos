@@ -129,7 +129,8 @@
                                     </td>
                                     <td><?= $customer['phone'] ?></td>
                                     <td> 
-                                        <a class="btn btn-sm btn-success" href="clientes-ficha.php?id=<?= $customer['customerID'] ?>">ver ficha</a>
+                                        <a class="btn btn-sm btn-success" href="clientes-ficha.php?id=<?= $customer['customerID'] ?>">ver ficha</a> &nbsp;
+                                        <button data-id="<?= $customer['customerID'] ?>" data-nombre="<?= $customer['companyName'] ?>" type="button" class="btn btn-sm btn-danger btn-eliminar">eliminar</button>
                                     </td>
                                 </tr>
                             <?php 
@@ -146,13 +147,42 @@
         </div>
     </div>
 
+    <!-- MODAL Bootstrap -->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger">Sí, eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php require_once __DIR__ . '/layouts/scripts.php'; ?>
     <script>
-        $('table').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/es-ES.json'
-            }
-        });        
+        $(document).ready(function() {
+            $('table').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/es-ES.json'
+                }
+            });
+
+            $('.btn-eliminar').on('click', function() {
+                $('.modal-title').text('Eliminar Cliente');
+                $('.modal-body').html('<p>¿Desea eliminar el cliente <b>' + $(this).data('nombre') + '</b>?</p>');
+
+                $('.modal').modal('show');
+                //alert($(this).data('id') + ' ' + $(this).data('nombre'));
+            });
+        });     
     </script>    
 </body>
 </html>
