@@ -1,6 +1,8 @@
 <?php 
-$tituloPagina = 'Home';
-$paginaActiva = 'home';
+    session_start();
+
+    $tituloPagina = 'Home';
+    $paginaActiva = 'home';
 ?>
 <!DOCTYPE html>
 <html lang="en">
