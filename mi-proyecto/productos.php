@@ -1,4 +1,5 @@
 <?php 
+require_once 'layouts/authorize.php';
 $tituloPagina = 'Gestión Productos';
 $paginaActiva = 'productos';
 ?>

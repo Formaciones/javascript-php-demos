@@ -1,4 +1,6 @@
 <?php
+    require_once 'layouts/authorize.php';
+    
     require_once 'models/Customer.php';
     require_once 'vendor/autoload.php';
 

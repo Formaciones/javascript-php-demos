@@ -3,6 +3,8 @@
 
     $tituloPagina = 'Home';
     $paginaActiva = 'home';
+
+    $mensaje = $_GET['mensaje'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,10 @@
             <div class="content-area p-4">
                 <div class="container-fluid">
                     
-                            
+                    <br />
+                    <?php If($mensaje != ''): ?>
+                    <h3 class="text-danger"><?= $mensaje ?></h3>
+                    <?php endif; ?>     
                     
                 </div>
             </div>

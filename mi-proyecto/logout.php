@@ -2,6 +2,8 @@
     // Recuperamos sesión actual
     session_start();
 
+    $usuario = $_SESSION['usuario'];
+
     // Opción 1 - Eliminamos las variables de sesión
     $_SESSION = [];
 
@@ -12,6 +14,6 @@
     session_destroy();
 
     // Volvemos al INDEX (porque es de acceso anónimo) o volvemos al LOGIN
-    header('Location: index.php');
+    header('Location: index.php?mensaje='. urlencode('Sesión de ' . $usuario . ' finalizada.'));
     exit;
 ?>

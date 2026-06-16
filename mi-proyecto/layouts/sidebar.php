@@ -5,9 +5,9 @@
             </div>
             <div class="p-3">
                 <ul class="nav flex-column gap-1">
-                    <li><a href="index.php" class="sidebar-link active"><i class="bi bi-house-door me-2"></i> Inicio</a></li>
-                    <li><a href="clientes-filter-guzzle.php" class="sidebar-link"><i class="bi bi-person me-2"></i> Clientes</a></li>
-                    <li><a href="productos.php" class="sidebar-link"><i class="bi bi-box me-2"></i> Productos</a></li>
+                    <li><a href="index.php" class="sidebar-link <?php echo $paginaActiva == 'home' ? 'active' : '' ?>"><i class="bi bi-house-door me-2"></i> Inicio</a></li>
+                    <li><a href="clientes-filter-guzzle.php" class="sidebar-link <?php echo $paginaActiva == 'clientes' ? 'active' : '' ?>"><i class="bi bi-person me-2"></i> Clientes</a></li>
+                    <li><a href="productos.php" class="sidebar-link <?php echo $paginaActiva == 'productos' ? 'active' : '' ?>"><i class="bi bi-box me-2"></i> Productos</a></li>
                 </ul>
             </div>
         </div>

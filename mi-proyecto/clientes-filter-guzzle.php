@@ -145,7 +145,9 @@
                                     <td><?= $customer['phone'] ?></td>
                                     <td> 
                                         <a class="btn btn-sm btn-success" href="clientes-ficha.php?id=<?= $customer['customerID'] ?>">ver ficha</a> &nbsp;
+                                        <?php if($_SESSION['rol'] == 'Admin'): ?>
                                         <button data-id="<?= $customer['customerID'] ?>" data-nombre="<?= $customer['companyName'] ?>" type="button" class="btn btn-sm btn-danger btn-eliminar">eliminar</button>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php 
