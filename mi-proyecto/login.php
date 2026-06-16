@@ -1,5 +1,4 @@
 <?php 
-
     // INI_GET retorna cualquier valor de fichero php.ini
     // session.gc_maxlifetime, retorna el tiempo máximo de inactividad de una sesión
     // echo ini_get('session.gc_maxlifetime');

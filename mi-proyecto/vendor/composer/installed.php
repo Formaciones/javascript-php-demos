@@ -3,13 +3,22 @@
         'name' => 'pue/mi-proyecto',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '81417413a59b4f8de71f2f75c0009bbf00da80e0',
+        'reference' => 'd0c2ccba8543af774d2f8251347233326fa1b8f2',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v7.1.0',
+            'version' => '7.1.0.0',
+            'reference' => 'b374a5d1a4f1f67fadc2165cdb284645945e2fc0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'guzzlehttp/guzzle' => array(
             'pretty_version' => '7.11.1',
             'version' => '7.11.1.0',
@@ -85,7 +94,7 @@
         'pue/mi-proyecto' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '81417413a59b4f8de71f2f75c0009bbf00da80e0',
+            'reference' => 'd0c2ccba8543af774d2f8251347233326fa1b8f2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

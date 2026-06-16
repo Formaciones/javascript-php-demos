@@ -1,5 +1,5 @@
 <?php 
-require_once 'layouts/authorize.php';
+require_once 'layouts/authorize-cookie.php';
 $tituloPagina = 'Gestión Productos';
 $paginaActiva = 'productos';
 ?>
