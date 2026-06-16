@@ -12,6 +12,6 @@
     session_destroy();
 
     // Volvemos al INDEX (porque es de acceso anónimo) o volvemos al LOGIN
-    header('Location: index.php')
+    header('Location: index.php');
     exit;
 ?>
