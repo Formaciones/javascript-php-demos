@@ -4,6 +4,8 @@
     // session.gc_maxlifetime, retorna el tiempo máximo de inactividad de una sesión
     // echo ini_get('session.gc_maxlifetime');
 
+    $destino = $_GET['returnUrl'] ?? '';
+
 ?>
 
 <!DOCTYPE html>
@@ -96,6 +98,7 @@
 
                 <!-- Formulario de Login -->
                 <form action="validar-sesion.php" method="POST">
+                    <input type="hidden" name="destino" value="<?= $destino ?>" />
                     
                     <!-- Campo Correo Electrónico -->
                     <div class="mb-3">

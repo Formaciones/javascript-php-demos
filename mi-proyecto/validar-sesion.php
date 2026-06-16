@@ -5,6 +5,7 @@
     // Recogemos datos del formulario de login
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
+    $destino = $_POST['destino'] ?? '';
 
     // Validamos usuario y contraseña REAL.
     // -> Opción 1: Consultar en un base de datos el Hash de la contraseña y comparar
@@ -17,9 +18,11 @@
         $_SESSION['usuario'] = 'Alex Wilber';
         $_SESSION['rol'] = 'Admin';
 
-        header('Location: index.php');        
+        if ($destino == '') header('Location: index.php');
+        else header("Location: {$destino}");
     } else {
-        header('Location: login.php');
+       if ($destino == '') header('Location: index.php?mensaje='. urlencode('Email y/o contraseña no validos'));
+        else header('Location: index.php?returnUrl=' . $destino . '&mensaje=' . urlencode('Email y/o contraseña no validos'));
     }
     exit;
 
