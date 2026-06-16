@@ -5,6 +5,7 @@
     // echo ini_get('session.gc_maxlifetime');
 
     $destino = $_GET['returnUrl'] ?? '';
+    $mensaje = $_GET['mensaje'] ?? '';
 
 ?>
 
@@ -94,6 +95,11 @@
                     </div>
                     <h3 class="fw-bold text-dark m-0">Bienvenido a MiPanel</h3>
                     <p class="text-muted small mt-1">Ingresa tus credenciales para acceder</p>
+                    <?php If($mensaje != ''): ?>
+                    <br />
+                    <p class="text-center text-danger"><?= $mensaje ?></p>
+                    <br />
+                    <?php endif; ?>
                 </div>
 
                 <!-- Formulario de Login -->

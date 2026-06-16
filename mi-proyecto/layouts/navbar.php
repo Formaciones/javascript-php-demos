@@ -9,7 +9,7 @@
                     <?php if(isset($_SESSION['usuario'])): ?>
                         <b>Usuario:</b> <?= $_SESSION['usuario'] ?> <a href="logout.php" class="btn btn-link">Logout</a>
                     <?php else: ?>
-                            <a href="login.php" class="btn btn-link">Login</a>
+                        <a href="login.php" class="btn btn-link">Login</a>
                     <?php endif; ?>
                 </div>
             </nav>

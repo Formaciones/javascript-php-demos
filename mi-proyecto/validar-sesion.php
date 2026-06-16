@@ -21,8 +21,8 @@
         if ($destino == '') header('Location: index.php');
         else header("Location: {$destino}");
     } else {
-       if ($destino == '') header('Location: index.php?mensaje='. urlencode('Email y/o contraseña no validos'));
-        else header('Location: index.php?returnUrl=' . $destino . '&mensaje=' . urlencode('Email y/o contraseña no validos'));
+       if ($destino == '') header('Location: login.php?mensaje='. urlencode('Email y/o contraseña no validos'));
+        else header('Location: login.php?returnUrl=' . $destino . '&mensaje=' . urlencode('Email y/o contraseña no validos'));
     }
     exit;
 
