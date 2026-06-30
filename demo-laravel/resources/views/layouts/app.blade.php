@@ -32,12 +32,12 @@
                 <div class="container-fluid">
                     
                     <!-- Título de la página -->
-                    <h1 class="mb-4 text-custom-green fw-bold">Título de la Sección</h1>
+                    <h1 class="mb-4 text-custom-green fw-bold">@yield('titulo1')</h1>
                     
                     <!-- Card para el contenido -->
                     <div class="card shadow-sm card-custom mb-4">
                         <div class="card-header bg-white py-3">
-                            <h5 class="card-title m-0 text-secondary fw-semibold">Contenido Principal</h5>
+                            <h5 class="card-title m-0 text-secondary fw-semibold">@yield('titulo2')</h5>
                         </div>
                         <div class="card-body bg-white">
                             @yield('contenido')
