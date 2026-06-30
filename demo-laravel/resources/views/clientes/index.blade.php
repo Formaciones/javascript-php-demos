@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-Northwind App | Home
+Northwind App | Listado de Clientes
 @endsection
 
 @section('titulo1')

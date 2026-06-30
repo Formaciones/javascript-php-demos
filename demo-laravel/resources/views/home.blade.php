@@ -12,6 +12,10 @@ Home
 &nbsp;
 @endsection
 
+@php
+    $html = '<script>alert("codigo malo");</script>';
+@endphp
+
 
 @section('contenido')
     <br />
@@ -25,4 +29,8 @@ Home
         </div>
         <div class="col-1"></div>
     </div>
+    <br />
+    <br />    
+
+
 @endsection

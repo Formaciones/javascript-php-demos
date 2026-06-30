@@ -24,7 +24,6 @@ class ClientesController extends Controller
         ]);
     }
 
-
     public function index() {
         try {
             $response = $this->httpclient->get('customers');
@@ -49,6 +48,25 @@ class ClientesController extends Controller
     }
 
     public function show($id) {
-        return view('clientes.show');
-    }    
+        try {
+            $response = $this->httpclient->get('customers/'. $id);
+            $cliente = json_decode($response->getBody()->getContents(), true);
+
+            return view('clientes.show', [ 'cliente' => $cliente ]);
+        } catch (RequestException $e) {
+            return redirect()
+                ->route('error.api')
+                ->with('mensaje', 'No se pudo recuperar el listado de clientes.')
+                ->with('respuesta', $e->getResponse())
+                ->with('codigo', $e->getCode());
+        } catch (Exception $e) {
+            return redirect()
+                ->route('error.default')
+                ->with('mensaje', $e->getMessage());
+        }        
+    }   
+    
+    public function update($request, $id) {
+
+    }
 }

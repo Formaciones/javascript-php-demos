@@ -26,3 +26,6 @@ Route::get('/clientes',
 
 Route::get('/clientes/{id}', 
     [ClientesController::class, 'show'])->name('clientes.show');
+
+Route::post('/clientes/{id}', 
+    [ClientesController::class, 'update'])->name('clientes.update');    
