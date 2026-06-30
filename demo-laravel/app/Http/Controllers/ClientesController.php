@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -25,10 +26,26 @@ class ClientesController extends Controller
 
 
     public function index() {
-        $response = $this->httpclient->get('customers');
-        $clientes = json_decode($response->getBody()->getContents(), true);
+        try {
+            $response = $this->httpclient->get('customers');
+            $clientes = json_decode($response->getBody()->getContents(), true);
 
-        return view('clientes.index', [ 'clientes' => $clientes ]);
+            // $a = 10;
+            // $b = 0;
+            // $c = $a / $b;
+
+            return view('clientes.index', [ 'clientes' => $clientes ]);
+        } catch (RequestException $e) {
+            return redirect()
+                ->route('error.api')
+                ->with('mensaje', 'No se pudo recuperar el listado de clientes.')
+                ->with('respuesta', $e->getResponse())
+                ->with('codigo', $e->getCode());
+        } catch (Exception $e) {
+            return redirect()
+                ->route('error.default')
+                ->with('mensaje', $e->getMessage());
+        }
     }
 
     public function show($id) {

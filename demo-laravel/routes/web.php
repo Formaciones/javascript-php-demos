@@ -11,8 +11,18 @@ Route::get('/welcome', function () {
 Route::get('/{nombre}/{matricula}', 
     [HomeController::class, 'index'])->where('matricula', '[0-9]{4}[A-Z]{3}');
 
+Route::get('/error-api', function () {
+    // Procesar errores de API
+    return view('error');
+})->name('error.api');
+
+Route::get('/error-default', function () {
+    // Procesar errores de la aplicación
+    return view('error');
+})->name('error.default');
+
 Route::get('/clientes', 
-    [ClientesController::class, 'index']);
+    [ClientesController::class, 'index'])->name('clientes.index');
 
 Route::get('/clientes/{id}', 
-    [ClientesController::class, 'show']);
+    [ClientesController::class, 'show'])->name('clientes.show');
