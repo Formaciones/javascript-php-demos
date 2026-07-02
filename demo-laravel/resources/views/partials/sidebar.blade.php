@@ -6,7 +6,7 @@
         <ul class="nav flex-column gap-1">
             <li><a href="/Borja/1234ABC" class="sidebar-link active"><i class="bi bi-house-door me-2"></i> Inicio</a></li>
             <li><a href="/clientes" class="sidebar-link"><i class="bi bi-person me-2"></i> Clientes API</a></li>
-            <li><a href="/clientes" class="sidebar-link"><i class="bi bi-person me-2"></i> Clientes DB</a></li>
+            <li><a href="/customers" class="sidebar-link"><i class="bi bi-person me-2"></i> Clientes DB</a></li>
             <li><a href="#" class="sidebar-link"><i class="bi bi-gear me-2"></i> Configuración</a></li>            
         </ul>
     </div>

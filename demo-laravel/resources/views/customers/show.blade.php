@@ -5,7 +5,7 @@ Northwind App | Ficha {{$cliente['companyName']}}
 @endsection
 
 @section('titulo1')
-Clientes
+Clientes desde MySQL
 @endsection
 
 @section('titulo2')
@@ -22,84 +22,84 @@ Ficha {{$cliente['companyName']}}
     <br />
     <div class="row">
         <div class="col-12">
-            <form method="post" action="/clientes/{{$cliente['customerID']}}">
+            <form method="post" action="/customers/{{$cliente['CustomerID']}}">
 
                 @csrf
 
                 <div class="row mb-3">
                     <label for="customerID" class="col-md-3 col-form-label text-end"><b>Identificador</b></label>
                     <div class="col-md-9">
-                            <input type="text" class="form-control" id="customerID" name="customerID" value="{{$cliente['customerID']}}" />
+                            <input type="text" class="form-control" id="customerID" name="customerID" value="{{$cliente['CustomerID']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="companyName" class="col-md-3 col-form-label text-end"><b>Empresa</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="companyName" name="companyName" value="{{$cliente['companyName']}}" />
+                        <input type="text" class="form-control" id="companyName" name="companyName" value="{{$cliente['CompanyName']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="contactName" class="col-md-3 col-form-label text-end"><b>Responsable</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="contactName" name="contactName" value="{{$cliente['contactName']}}" />
+                        <input type="text" class="form-control" id="contactName" name="contactName" value="{{$cliente['ContactName']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="contactTitle" class="col-md-3 col-form-label text-end"><b>Cargo</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="contactTitle" name="contactTitle" value="{{$cliente['contactTitle']}}" />
+                        <input type="text" class="form-control" id="contactTitle" name="contactTitle" value="{{$cliente['ContactTitle']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="address" class="col-md-3 col-form-label text-end"><b>Dirección</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="address" name="address" value="{{$cliente['address']}}" />
+                        <input type="text" class="form-control" id="address" name="address" value="{{$cliente['Address']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="postalCode" class="col-md-3 col-form-label text-end"><b>Código Postal</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="postalCode" name="postalCode" value="{{$cliente['postalCode']}}" />
+                        <input type="text" class="form-control" id="postalCode" name="postalCode" value="{{$cliente['PostalCode']}}" />
                     </div>
                 </div>                
 
                 <div class="row mb-3">
                     <label for="city" class="col-md-3 col-form-label text-end"><b>Ciudad</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="city" name="city" value="{{$cliente['city']}}" />
+                        <input type="text" class="form-control" id="city" name="city" value="{{$cliente['City']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="region" class="col-md-3 col-form-label text-end"><b>Region</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="region" name="region" value="{{$cliente['region']}}" />
+                        <input type="text" class="form-control" id="region" name="region" value="{{$cliente['Region']}}" />
                     </div>
                 </div>                
 
                 <div class="row mb-3">
                     <label for="country" class="col-md-3 col-form-label text-end"><b>País</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="country" name="country" value="{{$cliente['country']}}" />
+                        <input type="text" class="form-control" id="country" name="country" value="{{$cliente['Country']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="phone" class="col-md-3 col-form-label text-end"><b>Teléfono</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="phone" name="phone" value="{{$cliente['phone']}}" />
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{$cliente['Phone']}}" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="fax" class="col-md-3 col-form-label text-end"><b>Fax</b></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="fax" name="fax" value="{{$cliente['fax']}}" />
+                        <input type="text" class="form-control" id="fax" name="fax" value="{{$cliente['Fax']}}" />
                     </div>
                 </div>
                 
@@ -109,7 +109,7 @@ Ficha {{$cliente['companyName']}}
                     <div class="col-md-9 offset-md-3">
                         <div class="row">
                             <div class="col-6">
-                                <a href="/clientes" class="btn btn-outline-success">
+                                <a href="/customers" class="btn btn-outline-success">
                                     Volver al Listado de Clientes
                                 </a>
                             </div>

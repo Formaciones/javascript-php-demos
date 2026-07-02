@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', function () {
@@ -29,3 +30,12 @@ Route::get('/clientes/{id}',
 
 Route::post('/clientes/{id}', 
     [ClientesController::class, 'update'])->name('clientes.update');    
+
+Route::get('/customers', 
+    [CustomerController::class, 'index'])->name('customers.index');
+
+Route::get('/customers/{id}', 
+    [CustomerController::class, 'show'])->name('customers.show');
+
+Route::post('/customers/{id}', 
+    [CustomerController::class, 'update'])->name('customers.update');   

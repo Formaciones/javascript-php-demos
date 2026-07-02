@@ -5,7 +5,7 @@ Northwind App | Listado de Clientes
 @endsection
 
 @section('titulo1')
-Clientes desde APIRest
+Clientes desde MySQL
 @endsection
 
 @section('titulo2')
@@ -31,27 +31,27 @@ Listado de Clientes
                 <tbody>
                     @foreach ($clientes as $cliente)
                     <tr>
-                        <td>{{$cliente['customerID']}}</td>
-                        <td>{{$cliente['companyName']}}</td>
+                        <td>{{$cliente['CustomerID']}}</td>
+                        <td>{{$cliente['CompanyName']}}</td>
                         <td>
-                            {{$cliente['contactName']}}
+                            {{$cliente['ContactName']}}
                             <br /> 
-                            <small>{{$cliente['contactTitle']}}</small>
+                            <small>{{$cliente['ContactTitle']}}</small>
                         </td>
                         <td>
-                            {{$cliente['address']}}
+                            {{$cliente['Address']}}
                             <br /> 
                             <small>
-                                {{$cliente['postalCode']}} {{$cliente['city']}}
+                                {{$cliente['PostalCode']}} {{$cliente['City']}}
                                 <br />
-                                ({{$cliente['country']}})
+                                ({{$cliente['Country']}})
                             </small>
                         </td>                        
-                        <td>{{$cliente['phone']}}</td>
+                        <td>{{$cliente['Phone']}}</td>
                         <td>
-                            <a href="/clientes/{{$cliente['customerID']}}" class="btn btn-link">Ficha</a>
+                            <a href="/customers/{{$cliente['CustomerID']}}" class="btn btn-link">Ficha</a>
                             &nbsp;
-                            <a href="{{ route('clientes.show',['id' => $cliente['customerID']]) }}" class="btn btn-link">Ficha</a>
+                            <a href="{{ route('customers.show',['id' => $cliente['CustomerID']]) }}" class="btn btn-link">Ficha</a>
                         </td>
                     </tr>
                     @endforeach

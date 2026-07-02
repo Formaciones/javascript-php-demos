@@ -32,6 +32,21 @@ return [
 
     'connections' => [
 
+        'northwind' => [
+            'driver' => 'mysql',
+            'host' => env('DB2_HOST', '127.0.0.1'),
+            'port' => env('DB2_PORT', '3306'),
+            'database' => env('DB2_DATABASE', 'northwind'),
+            'username' => env('DB2_USERNAME', 'dbuser'),
+            'password' => env('DB2_PASSWORD', 'dbpass'),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null
+        ],    
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Exceptions\Renderer\Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
@@ -43,7 +43,7 @@ class ClientesController extends Controller
         } catch (Exception $e) {
             return redirect()
                 ->route('error.default')
-                ->with('mensaje', $e->getMessage());
+                ->with('mensaje', $e->message());
         }
     }
 
@@ -62,11 +62,52 @@ class ClientesController extends Controller
         } catch (Exception $e) {
             return redirect()
                 ->route('error.default')
-                ->with('mensaje', $e->getMessage());
+                ->with('mensaje', $e->message());
         }        
     }   
     
-    public function update($request, $id) {
+    public function update(Request $request, string $id) {
+        try {
+            $datos = $request->validate([
+                'customerID' => 'required|string|max:5',
+                'companyName' => 'required|string',
+                'contactName' => 'nullable|string',
+                'contactTitle' => 'nullable|string',
+                'address' => 'nullable|string',
+                'city' => 'nullable|string',
+                'region' => 'nullable|string',
+                'postalCode' => 'nullable|string',
+                'country' => 'nullable|string',
+                'phone' => 'nullable|string',
+                'fax' => 'nullable|string'
+            ]);
 
+            $dato2 = $request->all();
+            $dato3 = $request->only(['customerID', 'companyName']);
+            $datos4 = $request->companyName;
+
+            $response = $this->httpclient->put('customers/'. $id, ['json' => [
+                'customerID' => $id,
+                'companyName' => $datos['companyName'],
+                'contactName' => $datos['contactName'],
+                'contactTitle' => $datos['contactTitle'],
+                'address' => $datos['address'],
+                'city' => $datos['city'],
+                'region' => $datos['region'],
+                'postalCode' => $datos['postalCode'],
+                'country' => $datos['country'],
+                'phone' => $datos['phone'],
+                'fax' => $datos['fax']
+            ]]);
+
+            return redirect()
+                ->route('clientes.show', $id)
+                ->with('mensaje', 'Cliente ' . $datos['companyName'] . ' actualizado correctamente.');
+        } catch (RequestException $e) {
+            return redirect()
+                ->route('error.api')
+                ->with('mensaje', 'No se pudo actualizar el clientes.')
+                ->with('codigo', $e->getCode());
+        } 
     }
 }
